@@ -1,17 +1,35 @@
-import { Layout } from "components/index.ts";
+import { Handlers, PageProps } from "$fresh/server.ts";
+import { getCookies } from "std/http/cookie.ts";
 
-export default function Home() {
+import { Layout } from "components/index.ts";
+import SignInForm from "islands/SignInForm.tsx";
+
+export type Data = {
+  isAllowed: boolean;
+};
+
+export const handler: Handlers = {
+  GET(req, ctx) {
+    const cookies = getCookies(req.headers);
+    return ctx.render({ isAllowed: cookies.auth == "superzitrone" });
+  }
+}
+
+export default function Home({ data: { isAllowed }}: PageProps<Data>) {
   return (
-    <Layout isAllowed={false}>
+    <Layout isAllowed={isAllowed}>
       <img
         src="/logo.svg"
         class="w-32 h-32"
         alt="the fresh logo: a sliced lemon dripping with juice"
       />
+
       <p class="my-6">
-        Welcome to `fresh`. Try updating this message in the ./routes/index.tsx
-        file, and refresh.
+        You are currently {!isAllowed && "not"} signed in. 
       </p>
+
+      {!isAllowed ? <SignInForm /> : <a href="/api/sign-out">Sign Out</a>}
+
     </Layout>
   );
 }
