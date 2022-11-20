@@ -12,6 +12,11 @@
     "dotenv/": "https://deno.land/x/dotenv@v3.2.0/",
     "redis": "https://deno.land/x/redis@v0.27.2/mod.ts",
     "std/": "https://deno.land/std@0.160.0/",
-    "supabase": "https://esm.sh/@supabase/supabase-js@2.1.0"
+    "supabase": "https://esm.sh/@supabase/supabase-js@2.1.0",
+    
+    "components/": "./components/",
+    "islands/": "./islands/",
+    "lib/": "./lib/",
+    "routes/": "./routes/"
   }
 }
