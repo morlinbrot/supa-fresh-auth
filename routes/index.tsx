@@ -1,8 +1,7 @@
 import { Handlers, PageProps } from "$fresh/server.ts";
 import { getCookies } from "std/http/cookie.ts";
 
-import { Layout } from "components/index.ts";
-import SignInForm from "islands/SignInForm.tsx";
+import { Layout, Link } from "components/index.ts";
 
 export type Data = {
   isAllowed: boolean;
@@ -28,7 +27,7 @@ export default function Home({ data: { isAllowed }}: PageProps<Data>) {
         You are currently {!isAllowed && "not"} signed in. 
       </p>
 
-      {!isAllowed ? <SignInForm /> : <a href="/api/sign-out">Sign Out</a>}
+      {!isAllowed ? <Link href="/sign-in">Sign In</Link> : <Link href="/api/sign-out">Sign Out</Link>}
 
     </Layout>
   );

@@ -38,7 +38,7 @@ export function Layout(props: Props) {
 	            <NavLink href="/secret">Secret</NavLink>
 	          </div>
 	          <div class="flex sm:flex-shrink-0">
-	            {/*<NavLink href="/sign-up">Create account</NavLink>*/}
+	            <NavLink href="/sign-up">Create account</NavLink>
 	            <NavButton href={buttProps.href}>{buttProps.text}</NavButton>
 	          </div>
 	        </div>
