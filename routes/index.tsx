@@ -1,22 +1,18 @@
 import { Handlers, PageProps } from "$fresh/server.ts";
-import { getCookies } from "std/http/cookie.ts";
 
+import { ServerState } from "routes/_middleware.ts";
 import { Layout, Link } from "components/index.ts";
 
-export type Data = {
-  isAllowed: boolean;
-};
-
 export const handler: Handlers = {
-  GET(req, ctx) {
-    const cookies = getCookies(req.headers);
-    return ctx.render({ isAllowed: cookies.auth == "superzitrone" });
+  GET(_req, ctx) {
+    return ctx.render(ctx.state);
   }
 }
 
-export default function Home({ data: { isAllowed }}: PageProps<Data>) {
+export default function Home(props: PageProps<ServerState>) {
+  const isAllowed = !!props.data.user;
   return (
-    <Layout isAllowed={isAllowed}>
+    <Layout state={props.data}>
       <img
         src="/logo.svg"
         class="w-32 h-32"

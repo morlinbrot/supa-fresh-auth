@@ -26,8 +26,8 @@ export const handler: Handlers = {
 
     setCookie(headers, {
       name: "auth",
-      value: "superzitrone",
-      maxAge: 3600,
+      value: session.access_token,
+      maxAge: session.expires_in,
       sameSite: "Lax",
       domain: url.hostname,
       path: "/",
