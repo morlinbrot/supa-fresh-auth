@@ -10,4 +10,15 @@ import manifest from "./fresh.gen.ts";
 import twindPlugin from "$fresh/plugins/twind.ts";
 import twindConfig from "./twind.config.ts";
 
+import { supabase } from "lib/supabase.ts";
+import { redis } from "lib/redis.ts";
+
+supabase.auth.onAuthStateChange(async (event, session) => {
+  if (event == "SIGNED_IN" || event == "TOKEN_REFRESHED" && session != null) {
+    const { access_token, expires_in } = session!;
+    const stringified = JSON.stringify(session);
+    await redis.set(access_token, stringified, { ex: expires_in });
+  }
+});
+
 await start(manifest, { plugins: [twindPlugin(twindConfig)], port: 8080 });
