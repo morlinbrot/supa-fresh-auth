@@ -1,6 +1,11 @@
 import { connect } from "redis";
 
+import * as cfg from "../config.ts";
+
+const isDev = cfg.DENO_ENV == "dev" || cfg.DENO_ENV == "development";
+
 export const redis = await connect({
-  hostname: "127.0.0.1",
-  port: 6379,
+  hostname: cfg.REDIS_HOST,
+  port: cfg.REDIS_PORT,
+  password: isDev ? undefined : cfg.REDIS_PASS,
 });
