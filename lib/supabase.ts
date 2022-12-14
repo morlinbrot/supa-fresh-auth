@@ -1,7 +1,7 @@
-import { createClient } from "supabase"
-import { config } from "dotenv/mod.ts";
+import { createClient } from "supabase";
+import { config } from "std/dotenv/mod.ts";
 
-config({ safe: true, export: true });
+await config({ safe: true, export: true });
 
 const SUPABASE_URL = Deno.env.get("SUPABASE_URL") || "";
 const SUPABASE_KEY = Deno.env.get("SUPABASE_KEY") || "";
