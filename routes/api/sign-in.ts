@@ -8,21 +8,22 @@ export const handler: Handlers = {
     const url = new URL(req.url);
     const form = await req.formData();
 
-		const headers = new Headers();
-		headers.set("location", "/");
-		
+    const headers = new Headers();
+    headers.set("location", "/");
+
     const email = String(form.get("email"));
     const password = String(form.get("password"));
-    
-		const { data: { user, session }, error } = await supabase.auth.signInWithPassword({
-			email,
-			password,
-		});
 
-		if (error != null || user == null || session == null) {
+    const { data: { user, session }, error } = await supabase.auth
+      .signInWithPassword({
+        email,
+        password,
+      });
+
+    if (error != null || user == null || session == null) {
       // TODO: Add some actual error handling. Differentiate between 500 & 403.
-			return new Response(null, { status: 500 });
-		}
+      return new Response(null, { status: 500 });
+    }
 
     setCookie(headers, {
       name: "auth",
@@ -34,9 +35,9 @@ export const handler: Handlers = {
       secure: true,
     });
 
-		return new Response(null, {
-			status: 303,
-			headers,
-		});
+    return new Response(null, {
+      status: 303,
+      headers,
+    });
   },
 };

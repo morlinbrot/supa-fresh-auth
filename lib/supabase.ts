@@ -1,4 +1,4 @@
-import { createClient } from "supabase"
+import { createClient } from "supabase";
 import { config } from "dotenv/mod.ts";
 
 config({ safe: true, export: true });

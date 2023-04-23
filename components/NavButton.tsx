@@ -9,4 +9,3 @@ export function NavButton(props: JSX.HTMLAttributes<HTMLAnchorElement>) {
     />
   );
 }
-

@@ -28,6 +28,6 @@ export default {
     },
     p: {
       margin: "8px 0px 8px 0px",
-    }
-  })
+    },
+  }),
 } as Options;

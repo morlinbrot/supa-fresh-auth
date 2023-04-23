@@ -7,8 +7,8 @@ import AuthForm from "islands/AuthForm.tsx";
 export const handler: Handlers = {
   GET(_req, ctx) {
     return ctx.render(ctx.state);
-  }
-}
+  },
+};
 
 export default function Page(props: PageProps<ServerState>) {
   return (
