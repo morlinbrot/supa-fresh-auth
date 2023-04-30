@@ -2,6 +2,7 @@ import { MiddlewareHandlerContext } from "$fresh/server.ts";
 import { getCookies } from "std/http/cookie.ts";
 import { User } from "supabase";
 
+import { ACCESS_TOKEN } from "lib/config.ts";
 import { redis } from "lib/redis.ts";
 
 export type ServerState = {
@@ -15,7 +16,7 @@ export async function handler(
 ) {
   const url = new URL(req.url);
   const cookies = getCookies(req.headers);
-  const access_token = cookies.auth;
+  const access_token = cookies[ACCESS_TOKEN];
 
   const protected_route = url.pathname == "/secret";
 

@@ -1,6 +1,7 @@
 import { Handlers } from "$fresh/server.ts";
 import { setCookie } from "std/http/cookie.ts";
 
+import { ACCESS_TOKEN } from "lib/config.ts";
 import { supabase } from "lib/supabase.ts";
 
 export const handler: Handlers = {
@@ -26,7 +27,7 @@ export const handler: Handlers = {
     }
 
     setCookie(headers, {
-      name: "auth",
+      name: ACCESS_TOKEN,
       value: session.access_token,
       maxAge: session.expires_in,
       sameSite: "Lax",
