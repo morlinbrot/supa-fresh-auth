@@ -4,7 +4,7 @@ An example app built with Deno's [Fresh](https://fresh.deno.dev/) framework,
 using [Supabase](https://supabase.com/) and [Redis](https://redis.io/) to
 implement a simple cookie-based authentication scheme.
 
-[Here's an article]() I wrote about building this.
+[Here's an article](https://dev.to/morlinbrot/simple-auth-with-denos-fresh-supabase-2e68) I wrote about building this.
 
 Consider leaving me a star!
 
